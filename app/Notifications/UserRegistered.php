@@ -35,8 +35,9 @@ class UserRegistered extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->greeting('Hello ' . $this->user->name . '!')
+            ->line('You are now registered')
+            ->action('Go to App', url('/'))
             ->line('Thank you for using our application!');
     }
 
