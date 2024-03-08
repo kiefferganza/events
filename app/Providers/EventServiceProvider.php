@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\UserProcessed;
+use App\Events\UserRegistered;
 use App\Listeners\SendRegistrationEmail;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
@@ -15,7 +15,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        UserProcessed::class => [
+        UserRegistered::class => [
             SendRegistrationEmail::class,
         ],
     ];
