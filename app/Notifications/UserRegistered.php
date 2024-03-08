@@ -2,10 +2,10 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
 
 class UserRegistered extends Notification
 {
@@ -14,7 +14,7 @@ class UserRegistered extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(protected User $user)
     {
         //
     }
@@ -34,7 +34,6 @@ class UserRegistered extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        Log::info('here');
         return (new MailMessage)
             ->line('The introduction to the notification.')
             ->action('Notification Action', url('/'))

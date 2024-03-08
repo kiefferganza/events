@@ -2,11 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
+use App\Notifications\UserRegistered;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Notification;
 
 class UserProcessed implements ShouldQueue
 {
@@ -15,7 +18,7 @@ class UserProcessed implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct(protected User $user)
     {
         //
     }
@@ -25,6 +28,6 @@ class UserProcessed implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        Notification::send($this->user, new UserRegistered($this->user));
     }
 }

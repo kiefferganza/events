@@ -2,7 +2,8 @@
 
 namespace App\Listeners;
 
-use Illuminate\Support\Facades\Log;
+use App\Jobs\UserProcessed;
+use App\Models\User;
 
 class SendRegistrationEmail
 {
@@ -17,8 +18,8 @@ class SendRegistrationEmail
     /**
      * Handle the event.
      */
-    public function handle(object $event): void
+    public function handle($event): void
     {
-        Log::info('User has been processed. Sending registration email.');
+        UserProcessed::dispatch($event->user);
     }
 }
