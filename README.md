@@ -5,7 +5,8 @@
  - composer install
  - to run queue: php artisan queue:work
 
-
+#Using laravel sail
+ - 'sail up -d'
 
  #SAMPLE ENV
 
